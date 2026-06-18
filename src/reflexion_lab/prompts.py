@@ -12,13 +12,21 @@ Nhiệm vụ:
   2. Hoàn thành toàn bộ chuỗi suy luận.
   3. Chỉ trả về đáp án cuối cùng.
 
+ĐÁP ÁN PHỦ ĐỊNH (rất quan trọng):
+- Câu hỏi có thể giả định sẵn một điều không đúng (ví dụ "nhận giải GÌ" trong khi
+  thực thể KHÔNG hề thắng giải nào).
+- Nếu CONTEXT khẳng định thực thể KHÔNG thắng / KHÔNG nhận / KHÔNG có (did not win,
+  has not won, never received...), thì ĐÓ CHÍNH LÀ đáp án. Hãy trả lời trực tiếp sự
+  thật phủ định (ví dụ: "no Academy Award win") — TUYỆT ĐỐI không trả UNKNOWN.
+
 Nếu REFLECTION MEMORY được cung cấp:
 - Đọc toàn bộ lesson và next_strategy.
 - Tránh lặp lại lỗi cũ.
 - Ưu tiên áp dụng next_strategy trước khi trả lời.
 
-Nếu không tìm được đáp án chắc chắn trong CONTEXT thì trả lời:
-UNKNOWN
+Chỉ trả lời UNKNOWN khi CONTEXT THỰC SỰ không chứa bất kỳ thông tin liên quan nào
+để kết luận (kể cả kết luận phủ định). Nếu CONTEXT đã có thông tin — dù là phủ định —
+thì PHẢI đưa đáp án dứt khoát, không được trả UNKNOWN.
 
 Output:
 Chỉ in đúng đáp án cuối cùng trên một dòng.
