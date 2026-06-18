@@ -27,12 +27,14 @@ class BaseAgent:
             if judge.score == 1:
                 traces.append(trace)
                 break
-            
-            # TODO: Học viên triển khai logic Reflexion tại đây
-            # 1. Kiểm tra nếu agent_type là 'reflexion' và chưa hết số lần attempt
-            # 2. Gọi hàm reflector để lấy nội dung reflection
-            # 3. Cập nhật reflection_memory để Actor dùng cho lần sau
-            pass
+
+            # Reflexion: nếu là reflexion agent và còn lượt thử, sinh reflection
+            # rồi nạp chiến thuật mới vào reflection_memory để Actor dùng cho lần sau.
+            if self.agent_type == "reflexion" and attempt_id < self.max_attempts:
+                reflection = reflector(example, attempt_id, judge)
+                reflections.append(reflection)
+                trace.reflection = reflection
+                reflection_memory.append(reflection.next_strategy)
             traces.append(trace)
         total_tokens = sum(t.token_estimate for t in traces)
         total_latency = sum(t.latency_ms for t in traces)
